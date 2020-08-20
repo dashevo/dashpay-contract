@@ -1,4 +1,4 @@
-const {expect} = require('chai');
+const { expect } = require('chai');
 const dpp = require('@dashevo/dpp');
 const schema = require('../schema/dashpay.schema');
 
