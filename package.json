@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "Reference contract of the DashPay DPA on Dash Evolution",
   "scripts": {
-    "publish-contract": "node bin/publish-contract",
+    "register": "node scripts/register",
+    "fetch": "node scripts/fetch",
+    "check-package": "npm run check-package:name && npm run check-package:version",
+    "check-package:name": "test $(jq -r .name package.json) = $(jq -r .name package-lock.json)",
+    "check-package:version": "test $(jq -r .version package.json) = $(jq -r .version package-lock.json)",
+    "lint": "eslint .",
     "test": "npm run test:unit",
     "test:unit": "mocha 'schema/*.spec.js'"
   },
