@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/dashevo/dashpay-contract#readme",
   "devDependencies": {
-    "@dashevo/dpp": "^0.14.0",
+    "@dashevo/dpp": "^0.15.0-dev",
     "dirty-chai": "^2.0.1",
     "chai": "^4.2.0",
     "eslint": "^7.7.0",
