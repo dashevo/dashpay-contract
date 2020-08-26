@@ -189,6 +189,22 @@ describe('Dashpay Contract', () => {
           expect(error.keyword).to.equal('maxLength');
           expect(error.dataPath).to.equal('.avatarUrl');
         });
+        it('should be of type URL', async function () {
+          profileData.avatarUrl = 'notAUrl';
+          const profile = dpp.document.create(contract, identityId, 'profile', profileData);
+
+          let result = await dpp.document.validate(profile);
+          await dpp.document.validate(profile);
+
+          expect(result.isValid()).to.be.false();
+          expect(result.errors).to.have.a.lengthOf(1);
+
+          let [error] = result.errors;
+
+          expect(error.name).to.equal('JsonSchemaError');
+          expect(error.keyword).to.equal('format');
+          expect(error.dataPath).to.equal('.avatarUrl');
+        });
       });
       it('should not have additional properties', async () => {
         profileData.someOtherProperty = 42;
