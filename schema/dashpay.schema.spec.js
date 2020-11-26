@@ -3,6 +3,7 @@ const DashPlatformProtocol = require('@dashevo/dpp');
 const generateRandomIdentifier = require('@dashevo/dpp/lib/test/utils/generateRandomIdentifier');
 const schema = require('../schema/dashpay.schema');
 const whitepaperMasternodeText = 'Full nodes are servers running on a P2P network that allow peers to use them to receive updates about the events on the network. These nodes utilize significant amounts of traffic and other resources that incur a substantial cost. As a result, a steady decrease in the amount of these nodes has been observed for some time on the Bitcoin network and as a result, block propagation times have been upwards of 40 seconds. Many solutions have been proposed such as a new reward scheme by Microsoft Research and the Bitnodes incentive program';
+const encoded32Chars = '4fafc98bbfe597f7ba2c9f767d52036d';
 const encoded64Chars = '4fafc98bbfe597f7ba2c9f767d52036d2226175960a908e355e5c575711eb166';
 const encoded128Chars = '88a2cc4de23d5ebb9494153ea3633f9763eb8d28cf6b58e96e4e572072c0585bb4d817a3dd671af36dee4e249888521349703e9011b3121ea8481e2e8e7ec709';
 
@@ -189,7 +190,7 @@ describe('Dashpay Contract', () => {
 
         });
         it('should have exactly 32 chars length', async () => {
-          contactInfoData.encToUserId = encoded128Chars + '1';
+          contactInfoData.encToUserId = Buffer.from(encoded64Chars + '11', 'hex');
 
           try {
             const contactInfo = dpp.document.create(contract, identityId, 'contactInfo', contactInfoData);
@@ -200,12 +201,12 @@ describe('Dashpay Contract', () => {
             const [error] = e.errors;
 
             expect(error.name).to.equal('JsonSchemaError');
-            expect(error.keyword).to.equal('maxLength');
+            expect(error.keyword).to.equal('maxItems');
             expect(error.dataPath).to.equal('.encToUserId');
           }
         });
-        it('should have more or 96 chars length', async () => {
-          contactInfoData.encToUserId = encoded64Chars;
+        it('should have more or 32 chars length', async () => {
+          contactInfoData.encToUserId = Buffer.from(encoded32Chars, 'hex');
 
           try {
             const contactInfo = dpp.document.create(contract, identityId, 'contactInfo', contactInfoData);
@@ -216,15 +217,15 @@ describe('Dashpay Contract', () => {
             const [error] = e.errors;
 
             expect(error.name).to.equal('JsonSchemaError');
-            expect(error.keyword).to.equal('minLength');
+            expect(error.keyword).to.equal('minItems');
             expect(error.dataPath).to.equal('.encToUserId');
           }
         });
 
       });
-      describe('encryptionKeyIndex', () => {
+      describe('rootEncryptionKeyIndex', () => {
         it('should be defined', async () => {
-          delete contactInfoData.encryptionKeyIndex;
+          delete contactInfoData.rootEncryptionKeyIndex;
 
           try {
             const contactInfo = dpp.document.create(contract, identityId, 'contactInfo', contactInfoData);
@@ -235,7 +236,7 @@ describe('Dashpay Contract', () => {
             const [error] = e.errors;
             expect(error.name).to.equal('JsonSchemaError');
             expect(error.keyword).to.equal('required');
-            expect(error.params.missingProperty).to.equal('encryptionKeyIndex');
+            expect(error.params.missingProperty).to.equal('rootEncryptionKeyIndex');
           }
         });
       });
@@ -289,7 +290,7 @@ describe('Dashpay Contract', () => {
           delete contactRequestData.toUserId;
 
           try {
-            const contactRequest = dpp.document.create(contract, identityId, 'contactInfo', contactRequestData);
+            const contactRequest = dpp.document.create(contract, identityId, 'contactRequest', contactRequestData);
             throw new Error('Expected error');
           } catch (e) {
             expect(e.name).to.equal('InvalidDocumentError');
@@ -306,7 +307,7 @@ describe('Dashpay Contract', () => {
           delete contactRequestData.encryptedPublicKey;
 
           try {
-            const contactRequest = dpp.document.create(contract, identityId, 'contactInfo', contactRequestData);
+            const contactRequest = dpp.document.create(contract, identityId, 'contactRequest', contactRequestData);
             throw new Error('Expected error');
           } catch (e) {
             expect(e.name).to.equal('InvalidDocumentError');
@@ -323,7 +324,7 @@ describe('Dashpay Contract', () => {
           delete contactRequestData.senderKeyIndex;
 
           try {
-            const contactRequest = dpp.document.create(contract, identityId, 'contactInfo', contactRequestData);
+            const contactRequest = dpp.document.create(contract, identityId, 'contactRequest', contactRequestData);
             throw new Error('Expected error');
           } catch (e) {
             expect(e.name).to.equal('InvalidDocumentError');
