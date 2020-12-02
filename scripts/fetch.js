@@ -4,10 +4,10 @@ const DAPIClient = require('@dashevo/dapi-client');
 const DashPlatformProtocol = require('@dashevo/dpp');
 
 const { argv } = require('yargs')
-    .usage(
-        'Usage: $0 --dapiAddress [string] --contractId [string]',
-    )
-    .demandOption(['dapiAddress', 'contractId']);
+  .usage(
+    'Usage: $0 --dapiAddress [string] --contractId [string]',
+  )
+  .demandOption(['dapiAddress', 'contractId']);
 
 /**
  * Fetch Dashpay contract
@@ -34,14 +34,14 @@ async function fetch() {
   }
 
   const rawDataContract = await dpp.dataContract.createFromSerialized(
-      buffer, { skipValidation: true },
+    buffer, { skipValidation: true },
   );
 
   console.log(
-      'Here is the data contract JSON: \n',
-      JSON.stringify(rawDataContract, undefined, 2),
+    'Here is the data contract JSON: \n',
+    JSON.stringify(rawDataContract, undefined, 2),
   );
 }
 
 fetch()
-    .catch((e) => console.error(e));
+  .catch((e) => console.error(e));
