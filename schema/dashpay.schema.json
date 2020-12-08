@@ -76,10 +76,12 @@
         "maxItems": 32
       },
       "rootEncryptionKeyIndex": {
-        "type": "integer"
+        "type": "integer",
+        "minimum": 0
       },
       "derivationEncryptionKeyIndex": {
-        "type": "integer"
+        "type": "integer",
+        "minimum": 0
       },
       "privateData": {
         "type": "array",
@@ -160,13 +162,15 @@
         "maxItems": 96
       },
       "senderKeyIndex": {
-        "type": "integer"
+        "type": "integer",
+        "minimum": 0
       },
       "recipientKeyIndex": {
-        "type": "integer"
+        "type": "integer",
+        "minimum": 0
       },
       "accountReference": {
-        "type": "integer"
+        "type": "integer",
       },
       "encryptedAccountLabel": {
         "type": "array",
