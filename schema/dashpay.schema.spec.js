@@ -248,6 +248,21 @@ describe('Dashpay Contract', () => {
             expect(error.params.missingProperty).to.equal('rootEncryptionKeyIndex');
           }
         });
+        it('should not be less than 0', async () => {
+          contactInfoData.rootEncryptionKeyIndex = -1;
+
+          try {
+            dpp.document.create(contract, identityId, 'contactInfo', contactInfoData);
+            throw new Error('Expected error');
+          } catch (e) {
+            expect(e.name).to.equal('InvalidDocumentError');
+            expect(e.errors).to.have.a.lengthOf(1);
+            const [error] = e.errors;
+            expect(error.name).to.equal('JsonSchemaError');
+            expect(error.keyword).to.equal('minimum');
+            expect(error.dataPath).to.equal('.rootEncryptionKeyIndex');
+          }
+        });
       });
       describe('privateData', () => {
         it('should be defined', async () => {
@@ -344,6 +359,21 @@ describe('Dashpay Contract', () => {
             expect(error.params.missingProperty).to.equal('senderKeyIndex');
           }
         });
+        it('should not be less than 0', async () => {
+          contactRequestData.senderKeyIndex = -1;
+
+          try {
+            dpp.document.create(contract, identityId, 'contactRequest', contactRequestData);
+            throw new Error('Expected error');
+          } catch (e) {
+            expect(e.name).to.equal('InvalidDocumentError');
+            expect(e.errors).to.have.a.lengthOf(1);
+            const [error] = e.errors;
+            expect(error.name).to.equal('JsonSchemaError');
+            expect(error.keyword).to.equal('minimum');
+            expect(error.dataPath).to.equal('.senderKeyIndex');
+          }
+        });
       });
       describe('recipientKeyIndex', () => {
         it('should be defined', async () => {
@@ -359,6 +389,21 @@ describe('Dashpay Contract', () => {
             expect(error.name).to.equal('JsonSchemaError');
             expect(error.keyword).to.equal('required');
             expect(error.params.missingProperty).to.equal('recipientKeyIndex');
+          }
+        });
+        it('should not be less than 0', async () => {
+          contactRequestData.recipientKeyIndex = -1;
+
+          try {
+            dpp.document.create(contract, identityId, 'contactRequest', contactRequestData);
+            throw new Error('Expected error');
+          } catch (e) {
+            expect(e.name).to.equal('InvalidDocumentError');
+            expect(e.errors).to.have.a.lengthOf(1);
+            const [error] = e.errors;
+            expect(error.name).to.equal('JsonSchemaError');
+            expect(error.keyword).to.equal('minimum');
+            expect(error.dataPath).to.equal('.recipientKeyIndex');
           }
         });
       });
