@@ -211,7 +211,8 @@
       "encryptedPublicKey",
       "senderKeyIndex",
       "recipientKeyIndex",
-      "accountReference"
+      "accountReference",
+      "coreHeightCreatedAt"
     ],
     "additionalProperties": false
   }
