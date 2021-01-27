@@ -86,6 +86,7 @@ describe('Dashpay Contract', () => {
           }
         });
       });
+
       describe('avatarUrl', () => {
         it('should not be empty', async () => {
           profileData.avatarUrl = '';
@@ -151,7 +152,8 @@ describe('Dashpay Contract', () => {
 
           try {
             dpp.document.create(contract, identityId, 'profile', profileData);
-            throw new Error('Expected error');
+
+            expect.fail('should throw error');
           } catch (e) {
             expect(e.name).to.equal('InvalidDocumentError');
             expect(e.errors).to.have.a.lengthOf(1);
@@ -161,12 +163,14 @@ describe('Dashpay Contract', () => {
             expect(error.dataPath).to.equal('.avatarHash');
           }
         });
+
         it('should have maximum length of 32', async () => {
           profileData.avatarHash = Buffer.alloc(33);
 
           try {
             dpp.document.create(contract, identityId, 'profile', profileData);
-            throw new Error('Expected error');
+
+            expect.fail('should throw error');
           } catch (e) {
             expect(e.name).to.equal('InvalidDocumentError');
             expect(e.errors).to.have.a.lengthOf(1);
@@ -176,11 +180,14 @@ describe('Dashpay Contract', () => {
             expect(error.dataPath).to.equal('.avatarHash');
           }
         });
+
         it('should be of type array', async () => {
           profileData.avatarHash = 'notAnArray';
+
           try {
             dpp.document.create(contract, identityId, 'profile', profileData);
-            throw new Error('Expected error');
+
+            expect.fail('should throw error');
           } catch (e) {
             expect(e.name).to.equal('InvalidDocumentError');
             expect(e.errors).to.have.a.lengthOf(1);
@@ -191,13 +198,15 @@ describe('Dashpay Contract', () => {
           }
         });
       });
+
       describe('avatarFingerprint', () => {
         it('should have minimum length of 8', async () => {
           profileData.avatarFingerprint = Buffer.alloc(0);
 
           try {
             dpp.document.create(contract, identityId, 'profile', profileData);
-            throw new Error('Expected error');
+
+            expect.fail('should throw error');
           } catch (e) {
             expect(e.name).to.equal('InvalidDocumentError');
             expect(e.errors).to.have.a.lengthOf(1);
@@ -207,12 +216,14 @@ describe('Dashpay Contract', () => {
             expect(error.dataPath).to.equal('.avatarFingerprint');
           }
         });
+
         it('should have maximum length of 8', async () => {
           profileData.avatarFingerprint = Buffer.alloc(33);
 
           try {
             dpp.document.create(contract, identityId, 'profile', profileData);
-            throw new Error('Expected error');
+
+            expect.fail('should throw error');
           } catch (e) {
             expect(e.name).to.equal('InvalidDocumentError');
             expect(e.errors).to.have.a.lengthOf(1);
@@ -222,11 +233,14 @@ describe('Dashpay Contract', () => {
             expect(error.dataPath).to.equal('.avatarFingerprint');
           }
         });
+
         it('should be of type array', async () => {
           profileData.avatarFingerprint = 'notAnArray';
+
           try {
             dpp.document.create(contract, identityId, 'profile', profileData);
-            throw new Error('Expected error');
+
+            expect.fail('should throw error');
           } catch (e) {
             expect(e.name).to.equal('InvalidDocumentError');
             expect(e.errors).to.have.a.lengthOf(1);
@@ -237,6 +251,7 @@ describe('Dashpay Contract', () => {
           }
         });
       });
+
       it('should not have additional properties', async () => {
         profileData.someOtherProperty = 42;
 
@@ -558,7 +573,8 @@ describe('Dashpay Contract', () => {
 
           try {
             dpp.document.create(contract, identityId, 'contactRequest', contactRequestData);
-            throw new Error('Expected error');
+
+            expect.fail('should throw error');
           } catch (e) {
             expect(e.name).to.equal('InvalidDocumentError');
             expect(e.errors).to.have.a.lengthOf(1);
@@ -568,12 +584,14 @@ describe('Dashpay Contract', () => {
             expect(error.dataPath).to.equal('.encryptedAccountLabel');
           }
         });
+
         it('should have maximum length of 80', async () => {
           contactRequestData.encryptedAccountLabel = Buffer.alloc(82);
 
           try {
             dpp.document.create(contract, identityId, 'contactRequest', contactRequestData);
-            throw new Error('Expected error');
+
+            expect.fail('should throw error');
           } catch (e) {
             expect(e.name).to.equal('InvalidDocumentError');
             expect(e.errors).to.have.a.lengthOf(1);
@@ -583,11 +601,13 @@ describe('Dashpay Contract', () => {
             expect(error.dataPath).to.equal('.encryptedAccountLabel');
           }
         });
+
         it('should be of type array', async () => {
           contactRequestData.encryptedAccountLabel = 'notAnArray';
           try {
             dpp.document.create(contract, identityId, 'contactRequest', contactRequestData);
-            throw new Error('Expected error');
+
+            expect.fail('should throw error');
           } catch (e) {
             expect(e.name).to.equal('InvalidDocumentError');
             expect(e.errors).to.have.a.lengthOf(1);
@@ -598,13 +618,15 @@ describe('Dashpay Contract', () => {
           }
         });
       });
+
       describe('autoAcceptProof', () => {
         it('should have minimum length of 38', async () => {
           contactRequestData.autoAcceptProof = Buffer.alloc(0);
 
           try {
             dpp.document.create(contract, identityId, 'contactRequest', contactRequestData);
-            throw new Error('Expected error');
+
+            expect.fail('should throw error');
           } catch (e) {
             expect(e.name).to.equal('InvalidDocumentError');
             expect(e.errors).to.have.a.lengthOf(1);
@@ -614,12 +636,14 @@ describe('Dashpay Contract', () => {
             expect(error.dataPath).to.equal('.autoAcceptProof');
           }
         });
+
         it('should have maximum length of 102', async () => {
           contactRequestData.autoAcceptProof = Buffer.alloc(104);
 
           try {
             dpp.document.create(contract, identityId, 'contactRequest', contactRequestData);
-            throw new Error('Expected error');
+
+            expect.fail('should throw error');
           } catch (e) {
             expect(e.name).to.equal('InvalidDocumentError');
             expect(e.errors).to.have.a.lengthOf(1);
@@ -629,11 +653,14 @@ describe('Dashpay Contract', () => {
             expect(error.dataPath).to.equal('.autoAcceptProof');
           }
         });
+
         it('should be of type array', async () => {
           contactRequestData.autoAcceptProof = 'notAnArray';
+
           try {
             dpp.document.create(contract, identityId, 'contactRequest', contactRequestData);
-            throw new Error('Expected error');
+
+            expect.fail('should throw error');
           } catch (e) {
             expect(e.name).to.equal('InvalidDocumentError');
             expect(e.errors).to.have.a.lengthOf(1);
@@ -644,13 +671,15 @@ describe('Dashpay Contract', () => {
           }
         });
       });
+
       describe('accountReference', () => {
         it('should be defined', async () => {
           delete contactRequestData.accountReference;
 
           try {
             dpp.document.create(contract, identityId, 'contactRequest', contactRequestData);
-            throw new Error('Expected error');
+
+            expect.fail('should throw error');
           } catch (e) {
             expect(e.name).to.equal('InvalidDocumentError');
             expect(e.errors).to.have.a.lengthOf(1);
@@ -660,12 +689,14 @@ describe('Dashpay Contract', () => {
             expect(error.params.missingProperty).to.equal('accountReference');
           }
         });
+
         it('should not be less than 0', async () => {
           contactRequestData.accountReference = -1;
 
           try {
             dpp.document.create(contract, identityId, 'contactRequest', contactRequestData);
-            throw new Error('Expected error');
+
+            expect.fail('should throw error');
           } catch (e) {
             expect(e.name).to.equal('InvalidDocumentError');
             expect(e.errors).to.have.a.lengthOf(1);
@@ -676,13 +707,15 @@ describe('Dashpay Contract', () => {
           }
         });
       });
+
       describe('coreHeightCreatedAt', () => {
         it('should be defined', async () => {
           delete contactRequestData.coreHeightCreatedAt;
 
           try {
             dpp.document.create(contract, identityId, 'contactRequest', contactRequestData);
-            throw new Error('Expected error');
+
+            expect.fail('should throw error');
           } catch (e) {
             expect(e.name).to.equal('InvalidDocumentError');
             expect(e.errors).to.have.a.lengthOf(1);
@@ -692,12 +725,14 @@ describe('Dashpay Contract', () => {
             expect(error.params.missingProperty).to.equal('coreHeightCreatedAt');
           }
         });
+
         it('should not be less than 1', async () => {
           contactRequestData.coreHeightCreatedAt = -1;
 
           try {
             dpp.document.create(contract, identityId, 'contactRequest', contactRequestData);
-            throw new Error('Expected error');
+
+            expect.fail('should throw error');
           } catch (e) {
             expect(e.name).to.equal('InvalidDocumentError');
             expect(e.errors).to.have.a.lengthOf(1);
@@ -708,6 +743,7 @@ describe('Dashpay Contract', () => {
           }
         });
       });
+
       it('should not have additional properties', async () => {
         contactRequestData.someOtherProperty = 42;
 
