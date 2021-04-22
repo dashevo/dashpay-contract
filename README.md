@@ -1,7 +1,7 @@
 # DashPay Contract
 
 [![NPM Version](https://img.shields.io/npm/v/@dashevo/dashpay-contract)](https://www.npmjs.com/package/@dashevo/dashpay-contract)
-[![Build Status](https://travis-ci.com/dashevo/dashpay-contract.svg?branch=master)](https://travis-ci.com/dashevo/dashpay-contract)
+[![Build Status](https://github.com/dashevo/dashpay-contract/actions/workflows/test_and_release.yml/badge.svg)](https://github.com/dashevo/dashpay-contract/actions/workflows/test_and_release.yml)
 [![Release Date](https://img.shields.io/github/release-date/dashevo/dashpay-contract)](https://github.com/dashevo/dashpay-contract/releases/latest)
 [![license](https://img.shields.io/github/license/dashevo/dashpay-contract.svg)](LICENSE)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen)](https://github.com/RichardLitt/standard-readme)
