@@ -709,7 +709,6 @@ describe('Dashpay Contract', () => {
       });
 
       describe('coreHeightCreatedAt', () => {
-
         it('should not be less than 1', async () => {
           contactRequestData.coreHeightCreatedAt = -1;
 
